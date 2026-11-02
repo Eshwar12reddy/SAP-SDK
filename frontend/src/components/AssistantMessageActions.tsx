@@ -44,6 +44,7 @@ async function copyText(text: string) {
 }
 
 export function AssistantMessageActions({ content, messageKey, canRegenerate, onRegenerate }: AssistantMessageActionsProps) {
+  const [responseComplete, setResponseComplete] = useState(() => document.body.dataset.assistantResponseComplete !== "false");
   const feedbackKey = makeFeedbackKey(messageKey, content);
   const [feedback, setFeedback] = useState<"like" | "dislike" | null>(() => readFeedback(feedbackKey));
   const [notice, setNotice] = useState("");
@@ -51,6 +52,13 @@ export function AssistantMessageActions({ content, messageKey, canRegenerate, on
   const [speaking, setSpeaking] = useState(false);
 
   useEffect(() => setFeedback(readFeedback(feedbackKey)), [feedbackKey]);
+  useEffect(() => {
+    const observer = new MutationObserver(() => setResponseComplete(document.body.dataset.assistantResponseComplete !== "false"));
+    observer.observe(document.body, { attributes: true, attributeFilter: ["data-assistant-response-complete"] });
+    return () => observer.disconnect();
+  }, []);
+
+  if (!responseComplete || !content.trim()) return null;
 
   function rateResponse(value: "like" | "dislike") {
     const next = feedback === value ? null : value;

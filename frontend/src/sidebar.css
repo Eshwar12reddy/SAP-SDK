@@ -1,0 +1,53 @@
+.chat-shell .chat-sidebar{position:relative;display:flex;flex-direction:column;width:var(--sidebar-width,260px);flex:0 0 var(--sidebar-width,260px);min-width:0;padding:14px 12px;background:#f7f7f8;border-right:1px solid #e2e6ea;transition:width .18s ease,flex-basis .18s ease}
+.chat-shell .chat-sidebar.collapsed{width:62px;flex-basis:62px}
+.sidebar-top{display:flex;align-items:center;justify-content:space-between;height:38px;min-height:38px;margin:0 0 14px;padding:0 2px;white-space:nowrap}
+.sidebar-top{position:relative}
+.sidebar-top strong{font-size:17px;line-height:1.2;color:#171b20}
+.sidebar-tools{display:flex;align-items:center;gap:5px}
+.sidebar-tools button{display:grid;place-items:center;width:30px;height:30px;padding:0;border:0;border-radius:7px;background:transparent;color:#667381;font-size:22px;line-height:1;cursor:pointer}
+.sidebar-tools button:first-child{margin-right:34px}
+.sidebar-tools button[aria-label="Collapse sidebar"],.sidebar-tools button[aria-label="Expand sidebar"]{position:absolute;top:4px;right:2px}
+.sidebar-tools button:hover,.sidebar-tools button:focus-visible{background:#e9edf1}
+.chat-sidebar.collapsed .sidebar-top strong,.chat-sidebar.collapsed .sidebar-body,.chat-sidebar.collapsed .sidebar-tools button:first-child{display:none}
+.chat-sidebar.collapsed .sidebar-tools button:first-child{margin-right:0}
+.chat-sidebar.collapsed .sidebar-top{justify-content:center}
+.sidebar-body{min-height:0;overflow-y:auto;overflow-x:visible}
+.sidebar-new-chat{display:block;width:100%;height:44px;margin:0 0 12px;padding:0 14px;border:1px solid #d9dfe5;border-radius:10px;background:#fff;color:#172b3e;font-size:15px;font-weight:600;text-align:left;cursor:pointer}
+.sidebar-new-chat:hover{background:#eef1f4}
+.sidebar-section-toggle{display:flex;align-items:center;justify-content:flex-start;gap:7px;width:100%;height:36px;margin:12px 0 3px;padding:0 8px;border:0;border-radius:8px;background:transparent;color:#758394;font-size:14px;font-weight:600;text-align:left;cursor:pointer}
+.sidebar-section-toggle span{font-size:17px;font-weight:400;line-height:1}
+.sidebar-section-toggle:hover,.sidebar-section-toggle:focus-visible{background:#e9edf1}
+.sidebar-chats{display:grid;gap:3px}
+.sidebar-chats>p{margin:8px 10px;color:#98a5b3;font-size:13px}
+.sidebar-chat-wrap{position:relative;display:flex;align-items:center;min-width:0;border-radius:8px}
+.sidebar-chat-wrap:hover,.sidebar-chat-wrap.selected{background:#e9edf1}
+.sidebar-chat{display:block;min-width:0;width:100%;padding:10px 34px 10px 10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;border:0;border-radius:8px;background:transparent;color:#33485b;font-size:14px;text-align:left;cursor:pointer}
+.sidebar-project-name{display:block;min-width:0;width:100%;padding:10px 34px 10px 10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#33485b;font-size:14px}
+.chat-more{position:absolute;right:4px;top:4px;display:grid;place-items:center;width:28px;height:29px;padding:0;border:0;border-radius:6px;background:transparent;color:#667381;font-size:18px;cursor:pointer}
+.chat-more:hover,.chat-more:focus-visible{background:#dce3e9}
+.chat-action-menu{position:absolute;z-index:30;right:0;top:34px;width:175px;padding:6px;border:1px solid #dce1e6;border-radius:12px;background:#fff;box-shadow:0 12px 30px #1f344522}
+.chat-action-menu button{display:block;width:100%;padding:9px 10px;border:0;border-radius:8px;background:transparent;color:#26394b;text-align:left;cursor:pointer}
+.chat-action-menu button:hover{background:#f0f1f3}
+.chat-action-menu .danger{color:#d92d20}
+.project-heading{display:flex;align-items:center;gap:4px;height:40px;margin-top:10px}
+.project-heading .sidebar-section-toggle{flex:1;min-width:0;margin:0}
+.project-add{display:grid;place-items:center;width:30px;height:30px;padding:0;border:0;border-radius:7px;background:transparent;color:#667381;font-size:21px;cursor:pointer}
+.project-add:hover{background:#e9edf1}
+.search-overlay{position:fixed;z-index:100;inset:0;display:flex;align-items:flex-start;justify-content:center;padding:18vh 16px 16px;background:#14202c66}
+.search-dialog{display:grid;grid-template-columns:24px minmax(0,1fr) auto;align-items:center;column-gap:12px;width:min(580px,100%);max-height:70vh;padding:16px;border:1px solid #d9dfe5;border-radius:16px;background:#fff;box-shadow:0 18px 55px #12213238;color:#667381}
+.search-dialog>span{font-size:24px}
+.search-dialog>input{width:100%;padding:8px 0;border:0;outline:0;color:#172b3e;font-size:16px}
+.search-dialog>button{padding:7px 10px;border:0;border-radius:7px;background:#eef1f4;color:#33485b;cursor:pointer}
+.search-results{grid-column:1/-1;display:grid;gap:3px;max-height:48vh;margin-top:12px;overflow:auto;border-top:1px solid #e2e6ea;padding-top:10px}
+.search-results button{padding:10px;border:0;border-radius:8px;background:transparent;color:#33485b;text-align:left;cursor:pointer}
+.search-results button:hover{background:#eef1f4}
+.search-results p{margin:8px 10px;font-size:14px}
+@media(max-width:650px){.chat-shell .chat-sidebar{width:220px;flex-basis:220px}.chat-shell .chat-sidebar.collapsed{width:52px;flex-basis:52px}}
+.sidebar-resize-handle{position:absolute;z-index:25;top:0;right:-4px;bottom:0;width:8px;display:flex;align-items:center;justify-content:center;cursor:col-resize;touch-action:none;outline:none}
+.sidebar-resize-handle:after{content:"";width:2px;height:100%;background:transparent;transition:background-color .15s ease,width .15s ease}
+.sidebar-resize-handle:hover:after,.sidebar-resize-handle:focus-visible:after,.chat-shell.is-resizing .sidebar-resize-handle:after{width:3px;background:#e96f3b}
+.sidebar-resize-handle:focus-visible:after{box-shadow:0 0 0 2px #e96f3b33}
+.chat-shell.is-resizing,.chat-shell.is-resizing *{cursor:col-resize!important;user-select:none!important}
+.chat-shell.is-resizing .chat-sidebar{transition:none}
+@media(max-width:650px){.sidebar-resize-handle{display:none}}
+@media(prefers-color-scheme:dark){.sidebar-resize-handle:hover:after,.sidebar-resize-handle:focus-visible:after,.chat-shell.is-resizing .sidebar-resize-handle:after{background:#f29a72}}

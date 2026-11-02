@@ -1,0 +1,1 @@
+.sidebar-search:after{content:"⌄";position:absolute;right:-14px;top:5px;color:#8a949e;font-size:14px;line-height:1}.sidebar-search:focus-within:after{display:none}

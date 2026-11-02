@@ -1,0 +1,13 @@
+.env
+.env.*
+!.env.example
+**/__pycache__/
+**/.pytest_cache/
+*.py[cod]
+*.tsbuildinfo
+*.log
+.venv/
+venv/
+frontend/node_modules/
+frontend/dist/
+docker-compose.override.yml

@@ -1,6 +1,7 @@
 .env
 .env.*
 !.env.example
+!.env.staging.example
 **/__pycache__/
 **/.pytest_cache/
 *.py[cod]
@@ -11,3 +12,5 @@ venv/
 frontend/node_modules/
 frontend/dist/
 docker-compose.override.yml
+
+backups/

@@ -61,6 +61,7 @@ async def update_memory(memory_id: int, body: MemoryUpdate, user: User = Depends
     except SQLAlchemyError as error:
         await db.rollback()
         raise HTTPException(500, "Memory entry could not be updated.") from error
+    await db.refresh(entry)  # updated_at is a server-side onupdate value and is expired after commit
     return _serialize(entry)
 
 

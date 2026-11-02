@@ -1,0 +1,49 @@
+# SITE_ADDRESS is the public DNS name (e.g. staging.example.com): Caddy obtains and renews
+# a Let's Encrypt certificate automatically. "localhost" uses Caddy's internal CA (local testing).
+{$SITE_ADDRESS:localhost} {
+	encode zstd gzip
+
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "DENY"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		Permissions-Policy "camera=(), geolocation=(), payment=()"
+		-Server
+	}
+
+	log {
+		output stdout
+		format filter {
+			wrap console
+			request>headers>Authorization delete
+			request>headers>Cookie delete
+		}
+	}
+
+	# API: FastAPI on the private Docker network. Requests are capped at 1 MB
+	# (chat messages are limited to 12,000 characters by the API schema).
+	handle /api/* {
+		request_body {
+			max_size 1MB
+		}
+		reverse_proxy backend:8000 {
+			# Do not buffer server-sent events from /api/chat/stream.
+			flush_interval -1
+			transport http {
+				response_header_timeout 200s
+			}
+		}
+	}
+
+	# React SPA: serve static files, fall back to index.html so deep links survive a refresh.
+	handle {
+		root * /srv
+		@assets path /assets/*
+		header @assets Cache-Control "public, max-age=31536000, immutable"
+		@html not path /assets/*
+		header @html Cache-Control "no-cache"
+		try_files {path} /index.html
+		file_server
+	}
+}

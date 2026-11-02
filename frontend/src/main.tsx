@@ -9,9 +9,10 @@ import { useResizableSidebar } from "./hooks/useResizableSidebar";
 import { SidebarResizeHandle } from "./components/SidebarResizeHandle";
 import { AssistantMessageActions } from "./components/AssistantMessageActions";
 import { UserMessageActions } from "./components/UserMessageActions";
+import { API_URL } from "./services/api";
 import "./style.css";
 
-const API = `${window.location.protocol}//${window.location.hostname}:8000/api`;
+const API = API_URL;
 type Message = { role: "user" | "assistant"; content: string };
 type Conversation = { id: number; title: string; updated_at?: string | null };
 type MemoryEntry = { id: number; memory_text: string; memory_type: string; source_conversation_id?: number | null; created_at?: string | null };
